@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squishy Unboxing Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎉 Squishy Unboxing Simulator 🎉</h1>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-label">💰 Money:</span>
+                    <span class="stat-value" id="money">5000</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">🏆 Rank:</span>
+                    <span class="stat-value" id="rank">Novice</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">📊 Level:</span>
+                    <span class="stat-value" id="level">1</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main class="game-area">
+            <!-- Left Panel - Collection & Inventory -->
+            <div class="panel inventory-panel">
+                <h2>📦 My Collection</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="common">Common</button>
+                    <button class="filter-btn" data-filter="rare">Rare</button>
+                    <button class="filter-btn" data-filter="epic">Epic</button>
+                    <button class="filter-btn" data-filter="legendary">Legendary</button>
+                </div>
+                <div class="collection-grid" id="collection"></div>
+            </div>
+
+            <!-- Center Panel - Unboxing -->
+            <div class="panel unboxing-panel">
+                <h2>🎁 Unbox Squishies!</h2>
+                
+                <!-- Box Selection -->
+                <div class="box-selection">
+                    <h3>Choose Your Box:</h3>
+                    <div class="boxes-grid" id="boxesGrid"></div>
+                </div>
+
+                <!-- Unboxing Animation -->
+                <div class="unboxing-animation" id="unboxingAnimation">
+                    <div class="box-container">
+                        <div class="box" id="box">
+                            <div class="box-face front">?</div>
+                            <div class="box-face back"></div>
+                            <div class="box-face right"></div>
+                            <div class="box-face left"></div>
+                            <div class="box-face top"></div>
+                            <div class="box-face bottom"></div>
+                        </div>
+                    </div>
+                    <p id="unboxingText" class="unboxing-text">Click a box to unbox!</p>
+                </div>
+
+                <!-- Unbox Button -->
+                <button class="btn btn-primary" id="unboxBtn" disabled>Unbox (Price will show when box selected)</button>
+            </div>
+
+            <!-- Right Panel - Stats & Shop -->
+            <div class="panel stats-panel">
+                <h2>⭐ Your Stats</h2>
+                <div class="stats-details">
+                    <div class="stat-item">
+                        <span>Total Unboxed:</span>
+                        <strong id="totalUnboxed">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Rank Progress:</span>
+                        <strong id="rankProgress">0%</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Rarest Squishy:</span>
+                        <strong id="rarestSquishy">None</strong>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h2>🏪 Quick Sell</h2>
+                <div class="quick-sell">
+                    <button class="btn btn-secondary" id="sellRandomBtn">Sell Random</button>
+                    <button class="btn btn-secondary" id="sellDuplicatesBtn">Sell Duplicates</button>
+                </div>
+
+                <hr>
+
+                <h2>📈 Rank Info</h2>
+                <div class="rank-info" id="rankInfo"></div>
+            </div>
+        </main>
+
+        <!-- Modal for Squishy Details -->
+        <div class="modal" id="squishyModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="">
+                    <h2 id="modalName"></h2>
+                    <div class="modal-details">
+                        <p><strong>Rarity:</strong> <span id="modalRarity"></span></p>
+                        <p><strong>Value:</strong> 💰 <span id="modalValue"></span></p>
+                        <p><strong>Count:</strong> <span id="modalCount"></span></p>
+                    </div>
+                    <button class="btn btn-danger" id="sellBtn">Sell This Squishy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Unboxing Result -->
+        <div class="modal" id="resultModal">
+            <div class="modal-content result-modal">
+                <span class="close">&times;</span>
+                <h2 id="resultTitle">You Unboxed:</h2>
+                <div class="result-body">
+                    <img id="resultImage" src="" alt="">
+                    <h3 id="resultName"></h3>
+                    <p id="resultRarity"></p>
+                    <p class="earned-text">+💰 <span id="earnedMoney">0</span> (Rank Bonus: +<span id="rankBonus">0</span>%)</p>
+                </div>
+                <button class="btn btn-primary" id="continueBtn">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
